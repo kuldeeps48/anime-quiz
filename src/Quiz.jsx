@@ -3,6 +3,7 @@ import he from "he";
 import { shuffle } from "./utils";
 import { clsx } from "clsx";
 import Confetti from "react-confetti";
+import { BlinkBlur } from "react-loading-indicators";
 
 export default function Quiz(props) {
   const [questions, setQuestions] = useState([]);
@@ -16,20 +17,28 @@ export default function Quiz(props) {
     : 0;
 
   useEffect(() => {
-    fetch("https://opentdb.com/api.php?amount=10&category=31&difficulty=medium")
-      .then((res) => res.json())
-      .then((data) => {
-        setQuestions(
-          data.results.slice(0, 5).map((q) => ({
-            question: he.decode(q.question),
-            correct_answer: he.decode(q.correct_answer),
-            incorrect_answers: shuffle(
-              Array.from(new Set([...q.incorrect_answers, q.correct_answer]))
-            ).map((ans) => he.decode(ans)),
-            selected_answer: null,
-          }))
-        );
-      });
+    setTimeout(() => {
+      fetch(
+        "https://opentdb.com/api.php?amount=10&category=31&difficulty=medium"
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setQuestions(
+            data.results.slice(0, 5).map((q) => ({
+              question: he.decode(q.question),
+              correct_answer: he.decode(q.correct_answer),
+              incorrect_answers: shuffle(
+                Array.from(new Set([...q.incorrect_answers, q.correct_answer]))
+              ).map((ans) => he.decode(ans)),
+              selected_answer: null,
+            }))
+          );
+        })
+        .catch((error) => {
+          console.error("Error fetching quiz data:", error);
+          props.restart();
+        });
+    }, 1000); // Simulate loading delay
   }, []);
 
   function onOptionSelect(question, value) {
@@ -87,7 +96,13 @@ export default function Quiz(props) {
   return (
     <>
       {submit && score === questions.length && <Confetti />}
+      {questions.length === 0 && (
+        <div className="loader">
+          <BlinkBlur color="#4D5B9E" size="medium" />
+        </div>
+      )}
       <section className="quiz-section">{displayQuestions}</section>
+
       {questions?.length > 0 && (
         <div className="results-section">
           {submit && (

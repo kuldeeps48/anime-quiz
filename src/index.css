@@ -4,6 +4,13 @@ body {
   
 }
 
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .blob_left {
   width: 250px;
   height: 250px;
