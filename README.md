@@ -1,17 +1,41 @@
-# React + Vite
+# Anime Quiz
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight anime trivia quiz built with React and Vite.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Multiple-choice questions with scoring and a results section.
+- Prevents submission until all questions are answered.
+- Loading state using `react-loading-indicators` (BlinkBlur).
+- Confetti celebration for a perfect score via `react-confetti`.
+- Clean styles in `src/index.css`.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React + Vite
+- react-confetti
+- react-loading-indicators
+- clsx
+- he (HTML entity decoding)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# anime-quiz
+- Prerequisites: Node.js 18+ and npm.
+- Install dependencies:
+  - npm install
+- Start dev server:
+  - npm run dev
+- Build for production:
+  - npm run build
+- Preview production build:
+  - npm run preview
+
+## Project Structure (high-level)
+
+- src/Quiz.jsx — quiz UI, state management, scoring, loading, and confetti.
+- src/index.css — global styles and loader/decoration classes.
+
+## Notes
+
+- Using https://opentdb.com API for quiz data.
+- Ensure your quiz data provides fields like `question`, `incorrect_answers`, and correct answer handling as used in `Quiz.jsx`.
