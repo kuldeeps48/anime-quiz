@@ -8,6 +8,10 @@ function App() {
     setPage(1);
   }
 
+  function restart() {
+    setPage(0);
+  }
+
   return (
     <div>
       <header>
@@ -21,7 +25,7 @@ function App() {
           <button onClick={start}>Let's go!</button>
         </main>
       )}
-      {page == 1 && <Quiz />}
+      {page == 1 && <Quiz restart={() => restart()} />}
     </div>
   );
 }

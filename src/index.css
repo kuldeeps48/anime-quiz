@@ -43,7 +43,6 @@ main > h1 {
   font-weight: 700;
   font-style: Bold;
   font-size: 31.25px;
-  leading-trim: NONE;
   line-height: 100%;
   letter-spacing: 0%;
   text-align: center;
@@ -126,6 +125,12 @@ main > button {
   color: #293264;
 }
 
+.options > button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+
 .options > button.selected {
   background-color: #D6DBF5;
 }
@@ -163,6 +168,12 @@ main > button {
   font-size: 16px;
   text-align: center;
 }
+
+.results-section > button:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
 
 .results-section > h2 {
   color: #293264;
