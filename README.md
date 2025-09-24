@@ -2,6 +2,8 @@
 
 A lightweight anime trivia quiz built with React and Vite.
 
+[Live Demo](https://kuldeeps48.github.io/anime-quiz/)
+
 ## Features
 
 - Multiple-choice questions with scoring and a results section.
